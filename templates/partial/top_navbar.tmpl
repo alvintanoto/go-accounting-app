@@ -1,7 +1,10 @@
 {{ define "partial/top_navbar.tmpl" }}
 
-<nav class="navbar navbar-light bg-light row">
-    <a href="/" class="navbar-brand lead mx-2 col-sm"> MyWallet </a>
+<nav class="navbar navbar-light bg-light border-bottom">
+    <div class="navbar-brand lead mx-2 col-sm">
+        <i id="sidebarToggle" class="bi bi-list m-2 mx-3"></i>
+        <a href="/" class="m-2 lead text-decoration-none"> MyWallet </a>
+    </div>
 
     {{ if and (ne .route "/login") (ne .route "/register") }}
     <div class="d-none d-lg-block col-sm">
@@ -24,19 +27,14 @@
 
     {{ if .isLoggedIn }}
         <div class="d-flex flex-row justify-content-end col-sm">
-            <button type="button" class="btn btn-primary">
-                <i class="bi bi-plus"> </i>
-                Create
-            </button>
-
             <div class="dropdown mx-2">
                 <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
-                    {{ .username }}
+                    {{ .email }}
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#">Profile</a>
                     <div class="dropdown-divider"></div>
-                    <form action="/auth/logout" method="post">
+                    <form action="/logout" method="post">
                         <button class="dropdown-item text-danger" type="submit">Logout</button>
                     </form>
                 </div>

@@ -1,0 +1,20 @@
+{{ define "dashboard/index.tmpl" }}
+{{ template "layout/top.tmpl" . }}
+{{ template "partial/top_navbar.tmpl" . }}
+<link href="/static/css/collapsiblesidebar.css" rel="stylesheet">
+
+<div class="d-flex flex-col" id="wrapper">
+    <div class="border-end" >
+        {{ template "partial/left_sidebar.tmpl" . }}
+    </div>
+
+    <div id="page-content-wrapper">
+        content
+    </div>
+</div>
+
+
+{{ template "layout/bottom.tmpl" . }}
+<script src="/static/js/collapsesidebar.js"></script>
+
+{{ end }}

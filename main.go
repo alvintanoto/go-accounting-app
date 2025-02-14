@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"vint.id/goaccounting/database"
+	"vint.id/goaccounting/middleware"
 	"vint.id/goaccounting/routes"
 )
 
@@ -18,6 +19,10 @@ func notFound(c *gin.Context) {
 		"message":     "Page Not Found",
 		"description": "The requested page was not found.",
 	})
+}
+
+func landing(c *gin.Context) {
+	c.HTML(http.StatusOK, "landing/index.tmpl", gin.H{})
 }
 
 func main() {
@@ -41,9 +46,21 @@ func main() {
 		// handle err
 	}
 	app.Use(sessions.Sessions("default", store))
+	app.Use(middleware.RecoveryMiddleware())
+	app.Use(middleware.AuthRedirect())
 
+	app.GET("/", landing)
 	app.GET("/login", routes.Login)
+	app.POST("/login", routes.Login)
 	app.GET("/register", routes.Register)
+	app.POST("/register", routes.Register)
+	app.POST("/logout", routes.Logout)
+
+	dashboard := app.Group("/dashboard")
+	dashboard.Use(middleware.AuthRedirect())
+	{
+		dashboard.GET("/", routes.Dashboard)
+	}
 
 	if err := app.Run(); err != nil {
 		panic(err)
