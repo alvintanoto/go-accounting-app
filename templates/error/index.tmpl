@@ -1,0 +1,22 @@
+{{ define "error/index.tmpl" }}
+{{ template "layout/top.tmpl" . }}
+{{ template "partial/top_navbar.tmpl" . }}
+
+<div class="py-5">
+	<div class="d-flex justify-content-center
+				align-items-center flex-column
+				text-center w-100">
+		<div class="bg_img w-50">
+		</div>
+		<div>
+			<h1>{{ .code }}</h1>
+			<h2>{{ .message }}</h2>
+    		<p>
+          		{{ .description }}
+           	</p>
+		</div>
+	</div>
+</div>
+
+{{ template "layout/bottom.tmpl" . }}
+{{ end }}

@@ -1,0 +1,8 @@
+*:focus {
+    box-shadow: none !important;
+}
+
+.dropdown-item:focus {
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+}
