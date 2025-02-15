@@ -3,7 +3,7 @@
 }
 
 #sidebar-wrapper {
-    min-height: 100vh;
+    height: 100%;
     margin-left: -15rem;
     transition: margin 0.25s ease-out;
 }
