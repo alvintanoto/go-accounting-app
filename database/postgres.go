@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	_ "github.com/jackc/pgx/v5"
 )
 
 var DB *sql.DB
