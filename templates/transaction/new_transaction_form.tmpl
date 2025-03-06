@@ -1,0 +1,68 @@
+{{ define "transaction/new_transaction_form.tmpl" }}
+<div class="form-group mb-2">
+    <label for="amount">Amount</label>
+    <input type="text" placeholder="0" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" />
+</div>
+<div class="form-group mb-2">
+    <label for="category">Category</label>
+    <select class="form-select">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
+</div>
+<div id="dtcontainer" class="form-group mb-2">
+    <label for="date">Date</label>
+    <input class="form-control" type="text" id="datepicker" style="top:0"/>
+</div>
+<div>
+    <label for="amount">Description</label>
+    <textarea class="form-control"></textarea>
+</div>
+<div class="mt-3 d-flex justify-content-end">
+    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Create</button>
+
+    {{ if ne .hideClose }}
+        <button type="button" class="mr-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    {{ end }}
+</div>
+
+<script>
+    new tempusDominus.TempusDominus(document.getElementById('datepicker'), {
+        container: document.getElementById('dtcontainer'),
+        localization: {
+            hourCycle: 'h24'
+        },
+        restrictions: {
+            maxDate: new Date(),
+        },
+        display: {
+            buttons: {
+                today: true,
+                close: true
+            },
+            icons: {
+                time: 'bi bi-clock',
+                previous: 'bi bi-chevron-left',
+                next: 'bi bi-chevron-right',
+                date: 'bi bi-calendar-week',
+                up: 'bi bi-arrow-up',
+                down: 'bi bi-arrow-down',
+                today: 'bi bi-calendar-check',
+                clear: 'bi bi-trash',
+                close: 'bi bi-x'
+            },
+            components: {
+                calendar: true,
+                date: true,
+                month: true,
+                year: true,
+                decades: true,
+                clock: true,
+                hours: true,
+                minutes: true,
+                seconds: false,
+            }
+        }
+    });
+</script>
+{{ end }}

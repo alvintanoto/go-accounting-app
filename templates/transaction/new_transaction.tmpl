@@ -1,0 +1,31 @@
+{{ define "transaction/new_transaction.tmpl" }}
+{{ template "layout/top.tmpl" . }}
+<link href="/static/css/collapsiblesidebar.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
+
+{{ template "partial/modal_placeholder.tmpl" . }}
+{{ template "partial/top_navbar.tmpl" . }}
+
+<div class="d-flex flex-grow-1" id="wrapper">
+    <div class="border-end" >
+        {{ template "partial/left_sidebar.tmpl" . }}
+    </div>
+
+    <div id="page-content-wrapper" class="d-flex flex-column flex-grow-1 w-100">
+        <div class="m-2 d-flex justify-content-between">
+            <div class="lead h-100 d-flex align-items-center">
+                Create Transaction
+            </div>
+        </div>
+        <div class="m-2">
+            {{ template "transaction/new_transaction_form.tmpl" . }}
+        </div>
+    </div>
+</div>
+
+
+{{ template "layout/bottom.tmpl" . }}
+<script src="/static/js/collapsesidebar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
+
+{{ end }}

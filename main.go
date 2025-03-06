@@ -13,14 +13,6 @@ import (
 	"vint.id/goaccounting/routes"
 )
 
-func notFound(c *gin.Context) {
-	c.HTML(http.StatusNotFound, "error/index.tmpl", gin.H{
-		"code":        http.StatusNotFound,
-		"message":     "Page Not Found",
-		"description": "The requested page was not found.",
-	})
-}
-
 func landing(c *gin.Context) {
 	c.HTML(http.StatusOK, "landing/index.tmpl", gin.H{})
 }
@@ -36,7 +28,7 @@ func main() {
 	app := gin.Default()
 	app.RedirectTrailingSlash = true
 	app.HandleMethodNotAllowed = true
-	app.NoRoute(notFound)
+	app.NoRoute(routes.NotFound)
 
 	app.Static("/static", "./static")
 	app.LoadHTMLGlob("templates/**/*")
@@ -60,6 +52,17 @@ func main() {
 	dashboard.Use(middleware.AuthRedirect())
 	{
 		dashboard.GET("/", routes.Dashboard)
+		dashboard.GET("/wallet_management", routes.WalletManagement)
+		dashboard.GET("/report", routes.Report)
+		dashboard.GET("/settings", routes.Settings)
+	}
+
+	transaction := app.Group("/transaction")
+	transaction.Use(middleware.AuthRedirect())
+	{
+		transaction.GET("/", routes.Transaction)
+		transaction.GET("/create-transaction-modal", routes.CreateTransactionModal)
+		transaction.GET("/new", routes.NewTransaction)
 	}
 
 	if err := app.Run(); err != nil {

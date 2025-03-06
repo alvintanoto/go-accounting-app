@@ -1,0 +1,21 @@
+{{ define "settings/index.tmpl" }}
+{{ template "layout/top.tmpl" . }}
+<link href="/static/css/collapsiblesidebar.css" rel="stylesheet">
+
+{{ template "partial/top_navbar.tmpl" . }}
+
+<div class="d-flex flex-grow-1" id="wrapper">
+    <div class="border-end" >
+        {{ template "partial/left_sidebar.tmpl" . }}
+    </div>
+
+    <div id="page-content-wrapper">
+        settings
+    </div>
+</div>
+
+
+{{ template "layout/bottom.tmpl" . }}
+<script src="/static/js/collapsesidebar.js"></script>
+
+{{ end }}

@@ -34,6 +34,25 @@ func createSession(ctx *gin.Context, user *models.User) {
 }
 
 func error(c *gin.Context, code int, message, description string) {
+	isLoggedIn := checkLoggedIn(c)
+
+	if isLoggedIn {
+		session := sessions.Default(c)
+		userID := session.Get("UserID")
+		email := session.Get("Email")
+
+		c.HTML(http.StatusNotFound, "error/index.tmpl", gin.H{
+			"code":        code,
+			"message":     message,
+			"description": description,
+			"isLoggedIn":  isLoggedIn,
+			"user_id":     userID,
+			"email":       email,
+			"sideMenus":   getSideNavigationItem(-1),
+		})
+		return
+	}
+
 	c.HTML(http.StatusNotFound, "error/index.tmpl", gin.H{
 		"code":        code,
 		"message":     message,

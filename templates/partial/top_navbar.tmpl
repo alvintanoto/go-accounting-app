@@ -3,10 +3,10 @@
 <nav class="navbar navbar-light bg-light border-bottom">
     <div class="navbar-brand lead mx-2 col-sm">
         <i id="sidebarToggle" class="bi bi-list m-2 mx-3"></i>
-        <a href="/" class="m-2 lead text-decoration-none"> MyWallet </a>
+        <a href="/" class="m-2 lead text-decoration-none"> VintWallet </a>
     </div>
 
-    {{ if and (ne .route "/login") (ne .route "/register") }}
+    {{ if .isLoggedIn }}
     <div class="d-none d-lg-block col-sm">
          <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" aria-label="search" aria-describedby="basic-addon2">
@@ -28,7 +28,7 @@
     {{ if .isLoggedIn }}
         <div class="d-flex flex-row justify-content-end col-sm">
             <div class="dropdown mx-2">
-                <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn dropdown-toggle" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
                     {{ .email }}
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

@@ -18,6 +18,8 @@
 
 #page-content-wrapper {
     min-width: 100vw;
+    width: 100%;
+    padding: 8px;
 }
 
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {

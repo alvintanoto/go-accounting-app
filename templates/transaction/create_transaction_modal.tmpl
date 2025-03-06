@@ -1,0 +1,12 @@
+{{ define "transaction/create_transaction_modal.tmpl" }}
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Create Transaction</h5>
+        <a href="/transaction/new" type="button" class="btn btn-primary btn-sm"><i class="bi bi-arrows-angle-expand"> </i></a>
+    </div>
+    <div class="modal-body" style="overflow-y:true;max-height:720px;">
+        {{ template "transaction/new_transaction_form.tmpl" . }}
+    </div>
+</div>
+{{ end }}

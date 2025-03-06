@@ -1,22 +1,51 @@
 {{ define "error/index.tmpl" }}
 {{ template "layout/top.tmpl" . }}
+
+<link href="/static/css/collapsiblesidebar.css" rel="stylesheet">
+
 {{ template "partial/top_navbar.tmpl" . }}
 
-<div class="py-5">
-	<div class="d-flex justify-content-center
-				align-items-center flex-column
-				text-center w-100">
-		<div class="bg_img w-50">
-		</div>
-		<div>
-			<h1>{{ .code }}</h1>
-			<h2>{{ .message }}</h2>
-    		<p>
-          		{{ .description }}
-           	</p>
-		</div>
-	</div>
-</div>
+{{ if .isLoggedIn }}
+    <div class="d-flex flex-grow-1" id="wrapper">
+        <div class="border-end" >
+            {{ template "partial/left_sidebar.tmpl" . }}
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="py-5">
+               	<div class="d-flex justify-content-center
+                				align-items-center flex-column
+                				text-center w-100">
+              		<div class="bg_img w-50">
+              		</div>
+              		<div>
+             			<h1>{{ .code }}</h1>
+             			<h2>{{ .message }}</h2>
+                  		<p>
+                          		{{ .description }}
+                           	</p>
+              		</div>
+               	</div>
+            </div>
+        </div>
+    </div>
+{{ else }}
+    <div class="py-5">
+    	<div class="d-flex justify-content-center
+    				align-items-center flex-column
+    				text-center w-100">
+    		<div class="bg_img w-50">
+    		</div>
+    		<div>
+    			<h1>{{ .code }}</h1>
+    			<h2>{{ .message }}</h2>
+      		<p>
+              		{{ .description }}
+               	</p>
+    		</div>
+    	</div>
+    </div>
+{{end}}
 
 {{ template "layout/bottom.tmpl" . }}
 {{ end }}
