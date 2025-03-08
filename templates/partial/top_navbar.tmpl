@@ -2,7 +2,9 @@
 
 <nav class="navbar navbar-light bg-light border-bottom">
     <div class="navbar-brand lead mx-2 col-sm">
-        <i id="sidebarToggle" class="bi bi-list m-2 mx-3"></i>
+        {{ if .isLoggedIn }}
+            <i id="sidebarToggle" class="bi bi-list m-2 mx-3"></i>
+        {{ end }}
         <a href="/" class="m-2 lead text-decoration-none"> VintWallet </a>
     </div>
 
